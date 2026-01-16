@@ -1,0 +1,42 @@
+﻿  buf.c
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\buf.c(104,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\buf.c(170,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ERR.C
+  EXPR.C
+  FPP.C
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\FPP.C(521,14): warning C4013: '_access' undefined; assuming extern returning int
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\FPP.C(536,13): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\FPP.C(539,23): warning C4047: '=': 'char' differs in levels of indirection from 'void *'
+  GETARG.C
+  GETIDENT.C
+  HT.C
+  HTSYMHSH.C
+  IF.C
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\IF.C(180,20): warning C4244: 'function': conversion from 'int64_t' to 'int', possible loss of data
+  INPUT.C
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\INPUT.C(90,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\INPUT.C(119,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  MACRO.C
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\MACRO.C(562,18): warning C4133: 'function': incompatible types - from 'int64_t *' to 'int *'
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\MACRO.C(873,33): warning C4244: '=': conversion from 'int64_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\MACRO.C(939,12): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\MACRO.C(947,12): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  repeat.c
+  RTRIM.C
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\RTRIM.C(15,9): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  SEARCHEN.C
+  SHELLSRT.C
+  SUB.C
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(104,12): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(219,32): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(220,19): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(222,22): warning C4244: 'function': conversion from 'int64_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(252,15): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(301,20): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(302,23): warning C4267: 'function': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(304,20): warning C4244: '=': conversion from 'int64_t' to 'int', possible loss of data
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\SUB.C(716,34): warning C4244: 'function': conversion from '__int64' to 'int', possible loss of data
+  utility.c
+C:\Users\Robert\OneDrive\Documents\Cores2026\Qupls\software\FPP64\source\utility.c(147,7): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  FPP64.vcxproj -> C:\Users\Robert\OneDrive\Documents\Cores2026\arpl\arpl\x64\Debug\FPP64.exe
