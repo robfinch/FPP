@@ -579,13 +579,13 @@ int SearchAndSub(def_t* exc, int opt, char** nd)
           else
             set_input_buf_ptr(id_pos);
         }
-        else
-          set_input_buf_ptr(id_pos);
+        // If the id was not a macro, we still want to advance past the id.
         free(tdef.name);
         // the identifier wasn't a macro so just let it be
       }
       // failed to get identifier, so just continue with the next character
-      c = NextCh();
+      else
+        c = NextCh();
       if (c == ETB) {
         if (nd)
           *nd = inptr;
