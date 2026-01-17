@@ -1,7 +1,7 @@
 /*
 // ============================================================================
 //        __
-//   \\__/ o\    (C) 1992-2024  Robert Finch, Waterloo
+//   \\__/ o\    (C) 1992-2026  Robert Finch, Waterloo
 //    \  __ /    All rights reserved.
 //     \/_//     robfinch<remove>@finitron.ca
 //       ||
@@ -48,12 +48,6 @@
 #include <inttypes.h>
 
 #include "fpp.h"
-
-/* ---------------------------------------------------------------------------
-   (C) 1992-2024 Robert T Finch
-
-   fpp - PreProcessor for Assembler / Compiler
---------------------------------------------------------------------------- */
 
 buf_t* new_buf()
 {
@@ -118,7 +112,7 @@ void enlarge_buf(buf_t** b1)
   osz = b->size;
   oa = b->alloc;
   b->size = (b->size + 8191) & 0xfffff000LL;
-  if (b->alloc == 0)
+  if (b->buf != NULL && b->alloc == 0)
     p = realloc(b->buf, b->size);
   else {
     p = malloc(b->size);
@@ -137,7 +131,9 @@ void enlarge_buf(buf_t** b1)
   else
     memset(p, 0, b->size);
   // Clear out the freed-up buffer.
-  if (b->buf)
+  // Note that reallocating might return the same pointer as the original
+  // buffer. We do not want to clear things in that case.
+  if (b->buf && b->buf != p)
     memset(b->buf, 0, osz);
 //  if (oa==0 && b->buf != p)
 //    free(b->buf);
@@ -212,7 +208,7 @@ void insert_into_buf(buf_t** buf, char* p, int pos)
     (*buf)->pos = lastpos;
   }
   else if (pos == 1) {
-    memcpy_s(&(*buf)->buf[lastpos], (*buf)->size - lastpos - 1, p, nn+1);
+    memcpy_s(&(*buf)->buf[lastpos], (*buf)->size - lastpos - 1 -nn, p, nn+1);
     lastpos += nn + 1;
     (*buf)->buf[lastpos-1] = 0;
     (*buf)->pos = lastpos;

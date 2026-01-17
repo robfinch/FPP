@@ -554,7 +554,9 @@ int SearchAndSub(def_t* exc, int opt, char** nd)
         if (inptr > inbuf->buf + 1)
           c2 = inptr[-2];
         id_pos = get_input_buf_ndx();
+        inbuf;
         id = GetIdentifier();   // try and get an identifier
+        inbuf;
       }
 
       // Was there a symbol?

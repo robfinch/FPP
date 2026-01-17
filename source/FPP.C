@@ -494,12 +494,12 @@ void dinclude(int opt, char* pos)
    int x;
    def_t *p;
    pos_t* ndx;
+   pos_t* ndx2;
 
    ndx = GetPos();
    SearchAndSub(NULL, 0, NULL);
    DoPastes(inbuf->buf);
    SetPos(ndx);
-   free(ndx);
    tname = bbfile.body->buf;
    memset(path, 0, sizeof(path));
    memset(name, 0, sizeof(name));
@@ -586,6 +586,7 @@ void dinclude(int opt, char* pos)
   {
     sprintf_s(buf, sizeof(buf), "%c%s%c", 0x22, path, 0x22);
     bbfile.body->buf = StorePlainStr(buf);
+    bbfile.body->alloc = 1;
     p = (def_t *)htFind(&HashInfo, &bbfile);
   if (p)
       p->body = bbfile.body;
@@ -603,6 +604,7 @@ void dinclude(int opt, char* pos)
   if ((fopen_s(&fin, buf, "r")) != 0) {
     err(9, buf);
     fin = NULL;
+    free(ndx);
     return;
   }
 
@@ -614,6 +616,10 @@ void dinclude(int opt, char* pos)
   }
   else
     err(9, name);
+  // Strip #include
+  for (f = inbuf->buf + ndx->bufpos - 8; *f != ETB && *f != '\0' && *f != '\n'; f++)
+    *f = ' ';
+  free(ndx);
 }
 
 /* -----------------------------------------------------------------------------
@@ -962,6 +968,7 @@ void ProcFile(char *fname)
   int nn;
   char* ptr = NULL;
   char* ptr3 = NULL;
+  char* ptr4 = NULL;
 
   memset(fpo, 0, sizeof(fpo));
 
@@ -1002,11 +1009,16 @@ void ProcFile(char *fname)
     do {
       while (!ProcLine());
       fclose(fin);
+      while (*(inptr - 1) == ETB)
+        inptr--;
+      for (ptr4 = inptr; *ptr4 == ETB; ptr4++)
+        *ptr4 = '\0';
       ifp_sp--;
       if (ifp_sp >= 0) {
         fin = ifps[ifp_sp];
         //set_input_buf_ptr(0);
         //inbuf->buf[0] = 0;
+        inbuf;
         NextCh();
         unNextCh();
       }
@@ -1156,9 +1168,12 @@ void parsesw(char *s)
             buf[jj++] = buf2[ii++];
           buf[jj] = 0;
           tdef.body->buf = (char *)(buf[0] ? StorePlainStr(buf) : "");
+          tdef.body->alloc = buf[0] != '\0';
       }
-      else
-          tdef.body->buf = "";
+      else {
+        tdef.body->buf = "";
+        tdef.body->alloc = 0;
+      }
       tdef.line = 0;
       tdef.file = "<cmd line>";
       htInsert(&HashInfo, &tdef);
@@ -1364,7 +1379,7 @@ int main(int argc, char *argv[]) {
   HashInfo.width = sizeof(def_t);
   if (argc < 2)
   {
-		fprintf(stderr, "FPP version 3.08  (C) 1998-2026 Robert T Finch  \n");
+		fprintf(stderr, "FPP version 3.09  (C) 1998-2026 Robert T Finch  \n");
 		fprintf(stderr, "\nfpp64 [options] <filename> [<output filename>]\n\n");
 		fprintf(stderr, "Options:\n");
 		fprintf(stderr, "/D<macro name>[=<definition>] - define a macro\n");
@@ -1399,7 +1414,7 @@ int main(int argc, char *argv[]) {
     parsesw(argv[xx]);
 
   if (banner)
-    fprintf(stderr, "FPP version 3.08  (C) 1998-2026 Robert T Finch  \n");
+    fprintf(stderr, "FPP version 3.09  (C) 1998-2026 Robert T Finch  \n");
 
   /* ---------------------------
         Get source file name.

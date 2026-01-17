@@ -110,7 +110,7 @@ void fetch_line()
 	}
 	*/
 	nn = strlen(inbuf->buf);
-	if (nn + MAXLINE > inbuf->size)
+	while (nn + MAXLINE > inbuf->size)
 		enlarge_buf(&inbuf);
 	set_input_buf_ptr(ndx);
 	p1 = &inbuf->buf[nn];
